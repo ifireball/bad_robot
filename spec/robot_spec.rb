@@ -26,7 +26,7 @@ describe Robot do
 
   describe '#x' do
     it "Show robot X position set by #place" do
-      board.minX.upto(board.maxX) do |x|
+      board.min_x.upto(board.max_x) do |x|
         expect(robot.place(x, 3, :north).x).to eq(x)
       end
     end
@@ -43,7 +43,7 @@ describe Robot do
 
   describe '#y' do
     it "Show robot Y position set by #place" do
-      board.minY.upto(board.maxY) do |y|
+      board.min_y.upto(board.max_y) do |y|
         expect(robot.place(y, 3, :north).y) == y
       end
     end

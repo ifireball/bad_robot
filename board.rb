@@ -4,18 +4,18 @@ class Board
     @h = h
   end
   def on_board?(x, y)
-    x.between?(minX, maxX) and y.between?(minY, maxY)
+    x.between?(min_x, max_x) and y.between?(min_y, max_y)
   end
-  def minX
+  def min_x
     0
   end
-  def maxX
+  def max_x
     @w - 1
   end
-  def minY
+  def min_y
     0
   end
-  def maxY
+  def max_y
     @h - 1
   end
 end

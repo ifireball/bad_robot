@@ -17,24 +17,24 @@ describe Board do
       end
     end
   end
-  describe '#minX' do
+  describe '#min_x' do
     it 'Tells minimum X value' do
-      expect(board.minX).to eq(0)
+      expect(board.min_x).to eq(0)
     end
   end
-  describe '#minY' do
+  describe '#min_y' do
     it 'Tells minimum Y value' do
-      expect(board.minY).to eq(0)
+      expect(board.min_y).to eq(0)
     end
   end
-  describe '#maxX' do
+  describe '#max_x' do
     it 'Tells maximum X value' do
-      expect(board.maxX).to eq(4)
+      expect(board.max_x).to eq(4)
     end
   end
-  describe '#maxY' do
+  describe '#max_y' do
     it 'Tells maximum Y value' do
-      expect(board.maxY).to eq(4)
+      expect(board.max_y).to eq(4)
     end
   end
 end

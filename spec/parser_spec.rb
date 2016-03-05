@@ -52,17 +52,25 @@ describe Parser do
   end
 
   describe '#interact' do
-    it "Interacts with user to run multipile commands" do
-      [
-        ["PLACE 0,0,NORTH\nMOVE\nREPORT", "0,1,NORTH\n"],
-        ["PLACE 0,0,NORTH\nLEFT\nREPORT", "0,0,WEST\n"],
-        ["PLACE 1,2,EAST\nMOVE\nMOVE\nLEFT\nMOVE\nREPORT", "3,3,NORTH\n"],
-      ].each do |input, output|
-        istream = StringIO.new(input)
-        ostream = StringIO.new
-        parser = Parser.new(robot, istream, ostream)
+    it "Interacts with user to run multipile newline-terminated commands" do
+      command_set_examples = [
+        ['PLACE 0,0,NORTH', 'MOVE', 'REPORT'],
+        ['PLACE 0,0,NORTH', 'LEFT', 'REPORT'],
+        ['PLACE 1,2,EAST', 'MOVE', 'MOVE', 'LEFT', 'MOVE', 'REPORT'],
+      ]
+      expected_results = [
+        ['0,1,NORTH'],
+        ['0,0,WEST'],
+        ['3,3,NORTH'],
+      ]
+      command_set_examples.zip(expected_results).each do |command_set, result|
+        newline_terminated_commands = command_set.map {|c| "#{c}\n"}.join
+        newline_terminated_result = result.map {|r| "#{r}\n"}.join
+        input_stream = StringIO.new(newline_terminated_commands)
+        output_stream = StringIO.new
+        parser = Parser.new(robot, input_stream, output_stream)
         parser.interact
-        expect(ostream.string).to eq(output)
+        expect(output_stream.string).to eq(newline_terminated_result)
       end
     end
   end
